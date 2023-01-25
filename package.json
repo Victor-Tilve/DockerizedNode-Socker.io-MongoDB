@@ -1,0 +1,56 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "DockerizedNode Socker.io Redis MongoDB",
+  "main": "src/main/server/server.ts",
+  "scripts": {
+    "start": "npx sucrase-node src/main/server/server.ts",
+    "Start:dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server/server.ts",
+    "test": "jest",
+    "test:all": "npm test -- -c jest.config.all.ts",
+    "test:coverage": "npm test -- --coverage",
+    "test:int": "npm test -- --watch -c jest.config.int.ts",
+    "test:unit": "npm test -- --watch -c jest.config.unit.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor-Tilve/DockerizedNode-Socker.io-Redis-MongoDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victor-Tilve/DockerizedNode-Socker.io-Redis-MongoDB/issues"
+  },
+  "homepage": "https://github.com/Victor-Tilve/DockerizedNode-Socker.io-Redis-MongoDB#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.2.2",
+    "@types/node": "^18.11.9",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "dotenv": "^16.0.3",
+    "eslint-config-standard-with-typescript": "^24.0.0",
+    "git-commit-msg-linter": "^4.2.1",
+    "husky": "^8.0.1",
+    "jest": "^29.2.2",
+    "lint-staged": "^13.0.3",
+    "redis-mock": "^0.56.3",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.9",
+    "axios": "^1.2.1",
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "fast-glob": "^3.2.12",
+    "jsonwebtoken": "^9.0.0",
+    "node-mocks-http": "^1.12.1",
+    "redis": "^4.5.1",
+    "sucrase": "^3.29.0"
+  }
+}
