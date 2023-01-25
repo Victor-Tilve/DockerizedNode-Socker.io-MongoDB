@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    container_name: redis
+    ports:
+      - '${REDIS_PORT}'
+    command: redis-server --loglevel warning --requirepass ${REDIS_PASSWORD} # FIXME: how long cache values will be stored
+    volumes: 
+      - redis:/data
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./src:/api/src
+    ports:
+      - "${APIPORT}:${APIPORT}"
+    command: >
+      sh -c "npm run start"
+    container_name: API
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - PORT=${APIPORT}
+      - PRIMARYKEY=${IATIAPI_PRIMARYKEY}
+      - REDIS_URL=redis://redis
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN}
+
+volumes:
+  redis:
+    driver: local
